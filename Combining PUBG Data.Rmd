@@ -1,0 +1,36 @@
+---
+title: "Exploring PUBG Data"
+author: "Xander Hieken"
+date: "3/11/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+dfK0 <- read.csv("/Users/xander/Desktop/Data Science Masters/Applied Data Science/Project 1 (PUBG)/pubg-match-deaths/deaths/kill_match_stats_final_0.csv")
+dfK1 <- read.csv("/Users/xander/Desktop/Data Science Masters/Applied Data Science/Project 1 (PUBG)/pubg-match-deaths/deaths/kill_match_stats_final_1.csv")
+dfK2 <- read.csv("/Users/xander/Desktop/Data Science Masters/Applied Data Science/Project 1 (PUBG)/pubg-match-deaths/deaths/kill_match_stats_final_2.csv")
+dfK3 <- read.csv("/Users/xander/Desktop/Data Science Masters/Applied Data Science/Project 1 (PUBG)/pubg-match-deaths/deaths/kill_match_stats_final_3.csv")
+dfK4 <- read.csv("/Users/xander/Desktop/Data Science Masters/Applied Data Science/Project 1 (PUBG)/pubg-match-deaths/deaths/kill_match_stats_final_4.csv")
+
+dfA0 <- read.csv("/Users/xander/Desktop/Data Science Masters/Applied Data Science/Project 1 (PUBG)/pubg-match-deaths/aggregate/agg_match_stats_0.csv")
+dfA1 <- read.csv("/Users/xander/Desktop/Data Science Masters/Applied Data Science/Project 1 (PUBG)/pubg-match-deaths/aggregate/agg_match_stats_1.csv")
+dfA2 <- read.csv("/Users/xander/Desktop/Data Science Masters/Applied Data Science/Project 1 (PUBG)/pubg-match-deaths/aggregate/agg_match_stats_2.csv")
+dfA3 <- read.csv("/Users/xander/Desktop/Data Science Masters/Applied Data Science/Project 1 (PUBG)/pubg-match-deaths/aggregate/agg_match_stats_3.csv")
+dfA4 <- read.csv("/Users/xander/Desktop/Data Science Masters/Applied Data Science/Project 1 (PUBG)/pubg-match-deaths/aggregate/agg_match_stats_4.csv") 
+```
+
+```{r}
+library(plyr)
+dfList <- list(dfK0, dfK1, dfK2, dfK3, dfK4)
+dfK <- rbind.fill(dfList)
+
+dfList2 <- list(dfA0, dfA1, dfA2, dfA3, dfA4)
+dfA <- rbind.fill(dfList2)
+```
+
+```{r}
+write.csv(dfK, "PUBGkills.csv")
+write.csv(dfA, "PUBGstats.csv")
+```
+
